@@ -1,15 +1,13 @@
-#Programa de loja de informática que vende placas de vídeo
-
-#Função para cadastrar novas peças
+# Função para cadastrar novas peças
 def cadastrar_placa(estoque):
     nome = input("Digite o nome da Placa de vídeo: ")
     geracao = input("Digite a geração da placa de vídeo: ")
     quantidade = int(input("Digite a quantidade em estoque: "))
-    preco = input("Digite a preço: ")
-    estoque.append({"nome": nome, "geracao": geracao, "quantidade": quantidade, "Preço: R$": preco})
+    preco = input("Digite o preço: ")
+    estoque.append({"nome": nome, "geracao": geracao, "quantidade": quantidade, "preco": preco})
     print(f"Placa '{nome}' cadastrada no estoque!")
 
-#Função para listar as placas
+# Função para listar as placas
 def listar_placas(estoque):
     if len(estoque) == 0:
         print("Nenhuma placa cadastrada.")
@@ -17,7 +15,7 @@ def listar_placas(estoque):
         for placa in estoque:
             print(f"Nome: {placa['nome']}, Geração: {placa['geracao']}, Quantidade: {placa['quantidade']}, Preço: R${placa['preco']}")
 
-#Função para consultar Peças
+# Função para consultar Peças
 def consultar_placas(estoque):
     nome = input("Digite o nome da placa para consultar: ")
     for placa in estoque:
@@ -26,7 +24,7 @@ def consultar_placas(estoque):
             return
     print("Placa não encontrada no estoque.")
 
-#Função para vender a placa
+# Função para vender a placa
 def vender_placa(estoque):
     nome = input("Digite o nome da placa que será vendida: ")
     for placa in estoque:
@@ -38,12 +36,10 @@ def vender_placa(estoque):
             else:
                 print("Erro: Quantidade em estoque insuficiente.")
             return
-    print("placa não encontrada no estoque.")
+    print("Placa não encontrada no estoque.")
 
-
-#Função main
+# Função main
 def main():
-
     estoque = []
 
     while True:
