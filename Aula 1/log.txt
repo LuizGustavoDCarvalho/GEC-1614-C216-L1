@@ -1,9 +1,87 @@
+-----Bem vindo(a) a Gigabyte - Setor de placas gráficas-----
+
+Menu de opções:
+1. Cadastrar placa de vídeo
+2. Consultar placa de vídeo
+3. Listar placas de vídeo
+4. Vender Placa de vídeo
+5. Sair
+
+Escolha uma opção: 4
+Digite o nome da placa que será vendida: 4070
+Digite a quantidade a vender: 2
+Venda registrada! Quantidade restante de '4070': 3
+
+-----Bem vindo(a) a Gigabyte - Setor de placas gráficas-----
+
+Menu de opções:
+1. Cadastrar placa de vídeo
+2. Consultar placa de vídeo
+3. Listar placas de vídeo
+4. Vender Placa de vídeo
+5. Sair
+
+Escolha uma opção: & "C:/Users/Luiz Gustavo/AppData/Local/Programs/Python/Python311/python.exe" "c:/Users/Luiz Gustavo/Desktop/C216/GEC-1614-C216-L1/Aula 1/Giga Store.py"
+Opção inválida! Tente novamente.
+
+-----Bem vindo(a) a Gigabyte - Setor de placas gráficas-----
+
+Menu de opções:
+1. Cadastrar placa de vídeo
+2. Consultar placa de vídeo
+3. Listar placas de vídeo
+4. Vender Placa de vídeo
+5. Sair
+
 Escolha uma opção: 1
 Digite o nome da Placa de vídeo: 4070
 Digite a geração da placa de vídeo: 4
-Digite a quantidade em estoque: 2
-Digite a preço: 5000
+Digite a quantidade em estoque: 5
+Digite o preço: 2500
 Placa '4070' cadastrada no estoque!
+
+-----Bem vindo(a) a Gigabyte - Setor de placas gráficas-----
+
+Menu de opções:
+1. Cadastrar placa de vídeo
+2. Consultar placa de vídeo
+3. Listar placas de vídeo
+4. Vender Placa de vídeo
+5. Sair
+
+Escolha uma opção: 1
+Digite o nome da Placa de vídeo: 360ti
+Digite a geração da placa de vídeo: 3
+Digite a quantidade em estoque: 3
+Digite o preço: 2100
+Placa '360ti' cadastrada no estoque!
+
+-----Bem vindo(a) a Gigabyte - Setor de placas gráficas-----
+
+Menu de opções:
+1. Cadastrar placa de vídeo
+2. Consultar placa de vídeo
+3. Listar placas de vídeo
+4. Vender Placa de vídeo
+5. Sair
+
+Escolha uma opção: 2
+Digite o nome da placa para consultar: 4070
+Nome: 4070, Geração: 4, Quantidade: 3, Preço: R$5000
+
+-----Bem vindo(a) a Gigabyte - Setor de placas gráficas-----
+
+Menu de opções:
+1. Cadastrar placa de vídeo
+2. Consultar placa de vídeo
+3. Listar placas de vídeo
+4. Vender Placa de vídeo
+5. Sair
+
+Escolha uma opção: 3
+Nome: 4070, Geração: 4, Quantidade: 3, Preço: R$5000
+Nome: 4070, Geração: 4, Quantidade: 5, Preço: R$2500
+Nome: 360ti, Geração: 3, Quantidade: 3, Preço: R$2100
 
 -----Bem vindo(a) a Gigabyte - Setor de placas gráficas-----
 
@@ -17,7 +95,7 @@ Menu de opções:
 Escolha uma opção: 4
 Digite o nome da placa que será vendida: 4070
 Digite a quantidade a vender: 1
-Venda registrada! Quantidade restante de '4070': 1
+Venda registrada! Quantidade restante de '4070': 2
 
 -----Bem vindo(a) a Gigabyte - Setor de placas gráficas-----
 
@@ -28,15 +106,4 @@ Menu de opções:
 4. Vender Placa de vídeo
 5. Sair
 
-Escolha uma opção: 2
-Digite o nome da placa para consultar: 4070
-Traceback (most recent call last):
-  File "c:\Users\Luiz Gustavo\Desktop\C216\GEC-1614-C216-L1\Aula 1\Giga Store.py", line 75, in <module>
-    main()
-  File "c:\Users\Luiz Gustavo\Desktop\C216\GEC-1614-C216-L1\Aula 1\Giga Store.py", line 63, in main
-    consultar_placas(estoque)
-  File "c:\Users\Luiz Gustavo\Desktop\C216\GEC-1614-C216-L1\Aula 1\Giga Store.py", line 25, in consultar_placas
-    print(f"Nome: {placa['nome']}, Geração: {placa['geracao']}, Quantidade: {placa['quantidade']}, Preço: R${placa['preco']}")   
-                                                                                                             ~~~~~^^^^^^^^^      
-KeyError: 'preco'
-PS C:\Users\Luiz Gustavo\Desktop\C216\GEC-1614-C216-L1>
+Escolha uma opção:
