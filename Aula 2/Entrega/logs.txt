@@ -1,0 +1,89 @@
+PS C:\Users\Luiz Gustavo\Desktop\C216\GEC-1614-C216-L1\Aula 2> docker build -t gigastore .      
+[+] Building 13.9s (9/9) FINISHED                                   docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                0.0s
+ => => transferring dockerfile: 356B                                                0.0s
+ => [internal] load metadata for docker.io/library/python:3.10-slim                 2.3s
+ => [auth] library/python:pull token for registry-1.docker.io                       0.0s
+ => [internal] load .dockerignore                                                   0.0s
+ => => transferring context: 2B                                                     0.0s
+ => [1/3] FROM docker.io/library/python:3.10-slim@sha256:8666a639a54acc810408e505  10.5s 
+ => => resolve docker.io/library/python:3.10-slim@sha256:8666a639a54acc810408e505e  0.0s
+ => => sha256:153118e9b824d2780a2673732a685ed8adb3e861cca4e7d9d9dc 1.94kB / 1.94kB  0.0s 
+ => => sha256:a8f2f157dedb5e5ee78098f55be8e3061f2fb532698b214aa9b3 6.90kB / 6.90kB  0.0s 
+ => => sha256:e4fff0779e6ddd22366469f08626c3ab1884b5cbe1719b26da 29.13MB / 29.13MB  7.6s 
+ => => sha256:05ca1eb4c21a4e27a585b24cacbc09a91bbf06f0e29c1a65f089 3.51MB / 3.51MB  1.8s 
+ => => sha256:7be92ad65ca3b889b0345f19ea1259baa85814bd2e24d74662 12.38MB / 12.38MB  6.7s 
+ => => sha256:8666a639a54acc810408e505e2c6b46b50834385701675ee177f 9.13kB / 9.13kB  0.0s 
+ => => sha256:7ef3acb059e5af8a6df3d781a7ce7ca073e5b3b083a602a3b591631b 231B / 231B  2.2s 
+ => => sha256:a81861217e67b37b54a16843d072ebbddb7c21e30ea480f8f295 3.16MB / 3.16MB  3.5s 
+ => => extracting sha256:e4fff0779e6ddd22366469f08626c3ab1884b5cbe1719b26da238c95f  1.4s 
+ => => extracting sha256:05ca1eb4c21a4e27a585b24cacbc09a91bbf06f0e29c1a65f08901f44  0.1s 
+ => => extracting sha256:7be92ad65ca3b889b0345f19ea1259baa85814bd2e24d746628a813a9  0.5s 
+ => => extracting sha256:7ef3acb059e5af8a6df3d781a7ce7ca073e5b3b083a602a3b591631b5  0.0s 
+ => => extracting sha256:a81861217e67b37b54a16843d072ebbddb7c21e30ea480f8f295c1622  0.3s 
+ => [internal] load build context                                                   0.0s 
+ => => transferring context: 2.72kB                                                 0.0s 
+ => [2/3] WORKDIR /app                                                              0.7s 
+ => [3/3] COPY gigastore.py .                                                       0.1s 
+ => exporting to image                                                              0.1s 
+ => => exporting layers                                                             0.1s 
+ => => writing image sha256:d68b748a8ed80544908205eaaba4835fd90b5c13ad6c375c28ee46  0.0s 
+ => => naming to docker.io/library/gigastore                                        0.0s 
+
+What's next:
+    View a summary of image vulnerabilities and recommendations → docker scout quickview 
+PS C:\Users\Luiz Gustavo\Desktop\C216\GEC-1614-C216-L1\Aula 2> docker run -it gigastore  
+    
+-----Bem vindo(a) a Gigabyte - Setor de placas gráficas-----
+
+Menu de opções:
+1. Cadastrar placa de vídeo
+2. Consultar placa de vídeo
+3. Listar placas de vídeo
+4. Vender Placa de vídeo
+5. Sair
+
+Escolha uma opção: 1
+Digite o nome da Placa de vídeo: 4060
+Digite a geração da placa de vídeo: 4
+Digite a quantidade em estoque: 5
+Digite o preço: 20000
+Placa '4060' cadastrada no estoque!
+
+-----Bem vindo(a) a Gigabyte - Setor de placas gráficas-----
+
+Menu de opções:
+1. Cadastrar placa de vídeo
+2. Consultar placa de vídeo
+3. Listar placas de vídeo
+4. Vender Placa de vídeo
+5. Sair
+
+Escolha uma opção: 2
+Digite o nome da placa para consultar: 4060
+Nome: 4060, Geração: 4, Quantidade: 5, Preço: R$20000
+
+-----Bem vindo(a) a Gigabyte - Setor de placas gráficas-----
+
+Menu de opções:
+1. Cadastrar placa de vídeo
+2. Consultar placa de vídeo
+3. Listar placas de vídeo
+4. Vender Placa de vídeo
+5. Sair
+
+Escolha uma opção: 4
+Digite o nome da placa que será vendida: 4060
+Digite a quantidade a vender: 1
+Venda registrada! Quantidade restante de '4060': 4
+
+-----Bem vindo(a) a Gigabyte - Setor de placas gráficas-----
+
+Menu de opções:
+1. Cadastrar placa de vídeo
+2. Consultar placa de vídeo
+3. Listar placas de vídeo
+4. Vender Placa de vídeo
+5. Sair
+
+Escolha uma opção:
