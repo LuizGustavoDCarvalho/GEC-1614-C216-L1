@@ -1,0 +1,100 @@
+{
+	"id": "18c479e0-61df-422a-8622-92f2cba4da98",
+	"name": "C216-L1-PRATICA-3-Gustavo_GEC1614",
+	"timestamp": "2024-11-01T05:02:23.493Z",
+	"collection_id": "38387090-7c7362fc-0304-4e4b-b218-eaa98558cf0c",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 4,
+	"delay": 0,
+	"persist": true,
+	"status": "error",
+	"startedAt": "2024-11-01T05:02:22.854Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "d4d29cb2-ac79-48e7-8dc8-bbcdc172e1d0",
+			"name": "GET - Listar todas as placas",
+			"url": "http://127.0.0.1:8000/api/v1/Placas_de_video/",
+			"time": 5,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response should be a list": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should be a list": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response should be a list": true
+				}
+			]
+		},
+		{
+			"id": "eb4c0bef-698b-454d-9e87-5b477fecb303",
+			"name": "GET - Buscar Placa por ID",
+			"url": "http://127.0.0.1:8000/api/v1/Placas_de_video/1",
+			"time": 8,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response should contain plate details": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response should contain plate details": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response should contain plate details": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 13,
+	"collection": {
+		"requests": [
+			{
+				"id": "d4d29cb2-ac79-48e7-8dc8-bbcdc172e1d0",
+				"method": "GET"
+			},
+			{
+				"id": "eb4c0bef-698b-454d-9e87-5b477fecb303",
+				"method": "GET"
+			},
+			{
+				"id": "9c41bf50-9638-4be9-8024-014a167210b0",
+				"method": "POST"
+			}
+		]
+	}
+}
