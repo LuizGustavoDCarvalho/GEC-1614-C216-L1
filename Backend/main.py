@@ -7,34 +7,34 @@ import os
 
 # Função para obter a conexão com o banco de dados PostgreSQL
 async def get_database():
-    DATABASE_URL = os.environ.get("PGURL", "postgres://postgres:postgres@db:5432/Placas_de_video") 
+    DATABASE_URL = os.environ.get("PGURL", "postgres://postgres:postgres@db:5432/placas_de_video") 
     return await asyncpg.connect(DATABASE_URL)
 
 # Inicializar a aplicação FastAPI
 app = FastAPI()
 
-# Modelo para adicionar novas placas de vídeo
+# modelo para adicionar novas placas de vídeo
 class Placa(BaseModel):
     id: Optional[int] = None
-    Modelo: str
-    Marca: str
+    modelo: str
+    marca: str
     quantidade: int
     preco: float
 
 class PlacaBase(BaseModel):
-    Modelo: str
-    Marca: str
+    modelo: str
+    marca: str
     quantidade: int
     preco: float
 
-# Modelo para venda de Placas de vídeo
+# modelo para venda de Placas de vídeo
 class VendaPlaca(BaseModel):
     quantidade: int
 
-# Modelo para atualizar atributos de uma placa (exceto o ID)
+# modelo para atualizar atributos de uma placa (exceto o ID)
 class AtualizarPlaca(BaseModel):
-    Modelo: Optional[str] = None
-    Marca: Optional[str] = None
+    modelo: Optional[str] = None
+    marca: Optional[str] = None
     quantidade: Optional[int] = None
     preco: Optional[float] = None
 
@@ -48,24 +48,24 @@ async def log_requests(request: Request, call_next):
     return response
 
 # Função para verificar se a placa existe usando marca e modelo
-async def placa_existe(Modelo: str, Marca: str, conn: asyncpg.Connection):
+async def placa_existe(modelo: str, marca: str, conn: asyncpg.Connection):
     try:
-        query = "SELECT * FROM Placas_de_video WHERE LOWER(Modelo) = LOWER($1) AND LOWER(Marca) = LOWER($2)"
-        result = await conn.fetchval(query, Modelo, Marca)
+        query = "SELECT * FROM placas_de_video WHERE LOWER(modelo) = LOWER($1) AND LOWER(marca) = LOWER($2)"
+        result = await conn.fetchval(query, modelo, marca)
         return result is not None
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Falha ao verificar se a placa existe: {str(e)}")
 
 # 1. Adicionar uma nova placa
-@app.post("/api/v1/Placas_de_video/", status_code=201)
+@app.post("/api/v1/placas_de_video/", status_code=201)
 async def adicionar_placa(placa: PlacaBase):
     conn = await get_database()
-    if await placa_existe(placa.Modelo, placa.Marca, conn):
+    if await placa_existe(placa.modelo, placa.marca, conn):
         raise HTTPException(status_code=400, detail="Placa já existe.")
     try:
-        query = "INSERT INTO Placas_de_video (Modelo, Marca, quantidade, preco) VALUES ($1, $2, $3, $4)"
+        query = "INSERT INTO placas_de_video (modelo, marca, quantidade, preco) VALUES ($1, $2, $3, $4)"
         async with conn.transaction():
-            await conn.execute(query, placa.Modelo, placa.Marca, placa.quantidade, placa.preco)
+            await conn.execute(query, placa.modelo, placa.marca, placa.quantidade, placa.preco)
             return {"message": "Placa adicionada com sucesso!"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Falha ao adicionar a placa: {str(e)}")
@@ -73,11 +73,11 @@ async def adicionar_placa(placa: PlacaBase):
         await conn.close()
 
 # 2. Listar todas as placas de vídeo
-@app.get("/api/v1/Placas_de_video/", response_model=List[Placa])
+@app.get("/api/v1/placas_de_video/", response_model=List[Placa])
 async def listar_placas():
     conn = await get_database()
     try:
-        query = "SELECT * FROM Placas_de_video"
+        query = "SELECT * FROM placas_de_video"
         rows = await conn.fetch(query)
         placas_de_video = [dict(row) for row in rows]
         return placas_de_video
@@ -85,11 +85,11 @@ async def listar_placas():
         await conn.close()
 
 # 3. Buscar placa por ID
-@app.get("/api/v1/Placas_de_video/{placa_id}")
+@app.get("/api/v1/placas_de_video/{placa_id}")
 async def listar_placa_por_id(placa_id: int):
     conn = await get_database()
     try:
-        query = "SELECT * FROM Placas_de_video WHERE id = $1"
+        query = "SELECT * FROM placas_de_video WHERE id = $1"
         placa = await conn.fetchrow(query, placa_id)
         if placa is None:
             raise HTTPException(status_code=404, detail="Placa de vídeo não encontrada.")
@@ -98,11 +98,11 @@ async def listar_placa_por_id(placa_id: int):
         await conn.close()
 
 # 4. Vender uma placa de vídeo (reduzir quantidade no estoque)
-@app.put("/api/v1/Placas_de_video/{placa_id}/vender/")
+@app.put("/api/v1/placas_de_video/{placa_id}/vender/")
 async def vender_placa(placa_id: int, venda: VendaPlaca):
     conn = await get_database()
     try:
-        query = "SELECT * FROM Placas_de_video WHERE id = $1"
+        query = "SELECT * FROM placas_de_video WHERE id = $1"
         placa = await conn.fetchrow(query, placa_id)
         if placa is None:
             raise HTTPException(status_code=404, detail="Placa de vídeo não encontrada.")
@@ -111,7 +111,7 @@ async def vender_placa(placa_id: int, venda: VendaPlaca):
             raise HTTPException(status_code=400, detail="Quantidade insuficiente no estoque.")
 
         nova_quantidade = placa['quantidade'] - venda.quantidade
-        update_query = "UPDATE Placas_de_video SET quantidade = $1 WHERE id = $2"
+        update_query = "UPDATE placas_de_video SET quantidade = $1 WHERE id = $2"
         await conn.execute(update_query, nova_quantidade, placa_id)
 
         valor_venda = placa['preco'] * venda.quantidade
@@ -129,27 +129,27 @@ async def vender_placa(placa_id: int, venda: VendaPlaca):
         await conn.close()
 
 # 5. Atualizar atributos de uma placa pelo ID (exceto o ID)
-@app.patch("/api/v1/Placas_de_video/{placa_id}")
+@app.patch("/api/v1/placas_de_video/{placa_id}")
 async def atualizar_placa(placa_id: int, placa_atualizacao: AtualizarPlaca):
     conn = await get_database()
     try:
-        query = "SELECT * FROM Placas_de_video WHERE id = $1"
+        query = "SELECT * FROM placas_de_video WHERE id = $1"
         placa = await conn.fetchrow(query, placa_id)
         if placa is None:
             raise HTTPException(status_code=404, detail="Placa de vídeo não encontrada.")
 
         update_query = """
-            UPDATE Placas_de_video
-            SET Modelo = COALESCE($1, Modelo),
-                Marca = COALESCE($2, Marca),
+            UPDATE placas_de_video
+            SET modelo = COALESCE($1, modelo),
+                marca = COALESCE($2, marca),
                 quantidade = COALESCE($3, quantidade),
                 preco = COALESCE($4, preco)
             WHERE id = $5
         """
         await conn.execute(
             update_query,
-            placa_atualizacao.Modelo,
-            placa_atualizacao.Marca,
+            placa_atualizacao.modelo,
+            placa_atualizacao.marca,
             placa_atualizacao.quantidade,
             placa_atualizacao.preco,
             placa_id
@@ -159,24 +159,24 @@ async def atualizar_placa(placa_id: int, placa_atualizacao: AtualizarPlaca):
         await conn.close()
 
 # 6. Remover uma placa pelo ID
-@app.delete("/api/v1/Placas_de_video/{placa_id}")
+@app.delete("/api/v1/placas_de_video/{placa_id}")
 async def remover_placa(placa_id: int):
     conn = await get_database()
     try:
-        query = "SELECT * FROM Placas_de_video WHERE id = $1"
+        query = "SELECT * FROM placas_de_video WHERE id = $1"
         placa = await conn.fetchrow(query, placa_id)
         if placa is None:
             raise HTTPException(status_code=404, detail="Placa de vídeo não encontrada.")
 
-        delete_query = "DELETE FROM Placas_de_video WHERE id = $1"
+        delete_query = "DELETE FROM placas_de_video WHERE id = $1"
         await conn.execute(delete_query, placa_id)
         return {"message": "Placa removida com sucesso!"}
     finally:
         await conn.close()
 
 # 7. Resetar banco de dados de Placas de vídeo
-@app.delete("/api/v1/Placas_de_video/")
-async def resetar_Placas_de_video():
+@app.delete("/api/v1/placas_de_video/")
+async def resetar_placas_de_video():
     init_sql = os.getenv("INIT_SQL", "db/init.sql")
     conn = await get_database()
     try:

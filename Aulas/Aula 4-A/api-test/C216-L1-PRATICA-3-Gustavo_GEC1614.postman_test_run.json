@@ -15,7 +15,7 @@
 		{
 			"id": "d4d29cb2-ac79-48e7-8dc8-bbcdc172e1d0",
 			"name": "GET - Listar todas as placas",
-			"url": "http://127.0.0.1:8000/api/v1/Placas_de_video/",
+			"url": "http://127.0.0.1:8000/api/v1/placas_de_video/",
 			"time": 5,
 			"responseCode": {
 				"code": 200,
@@ -48,7 +48,7 @@
 		{
 			"id": "eb4c0bef-698b-454d-9e87-5b477fecb303",
 			"name": "GET - Buscar Placa por ID",
-			"url": "http://127.0.0.1:8000/api/v1/Placas_de_video/1",
+			"url": "http://127.0.0.1:8000/api/v1/placas_de_video/1",
 			"time": 8,
 			"responseCode": {
 				"code": 200,
