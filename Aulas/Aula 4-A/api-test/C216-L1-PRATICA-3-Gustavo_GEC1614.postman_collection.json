@@ -323,7 +323,7 @@
 			"response": []
 		},
 		{
-			"name": "DELETE - Remover Todos os Livros (RESETAR REPOSITORIO)",
+			"name": "DELETE - Remover Todos os Placa de vídeos (RESETAR REPOSITORIO)",
 			"event": [
 				{
 					"listen": "test",
